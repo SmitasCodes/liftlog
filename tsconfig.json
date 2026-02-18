@@ -1,0 +1,56 @@
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "target": "ES2023",
+    "strict": true,
+    "esModuleInterop": true,
+    // "ignoreDeprecations": "6.0"
+  }
+}
+
+
+// Table users {
+//   id integer [primary key]
+//   username varchar
+//   email varchar
+//   password varchar
+//   created_at timestamp
+//   updated_at timestamp
+// }
+
+// Table exercises {
+//   id integer [primary key]
+//   name varchar
+//   user_id integer [ref: > users.id]
+// }
+
+// Table templates {
+//   id integer [primary key]
+//   user_id integer [ref: > users.id]
+//   name varchar
+// }
+
+// Table templates_exercises {
+//   id integer [primary key]
+//   template_id integer [ref: > templates.id]
+//   exercise_id integer [ref: > exercises.id]
+//   order integer
+//   sets integer
+// }
+
+// Table sessions {
+//   id integer [primary key]
+//   user_id integer [ref: > users.id]
+//   template_id integer [ref: > templates.id]
+//   created_at date
+// }
+
+// Table sets{
+//   id integer [primary key]
+//   session_id integer [ref: > sessions.id]
+//   exercise_id integer [ref: > exercises.id]
+//   set_number integer
+//   weight decimal 
+//   reps integer
+// }
