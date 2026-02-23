@@ -1,9 +1,16 @@
 {
   "compilerOptions": {
+    "skipLibCheck": true,
     "module": "ESNext",
-    "moduleResolution": "bundler",
-    "target": "ES2023",
-    "strict": true,
+    "moduleResolution": "node",
+    "target": "ESNext",
+    "isolatedModules": true,
     "esModuleInterop": true,
-  }
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
+    "outDir": "dist",
+    "lib": [ "esnext" ],
+    "types": [ "node" ],
+    "baseUrl": "./",
+  },
 }
