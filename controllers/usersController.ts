@@ -2,13 +2,14 @@ import asyncHandler from "express-async-handler";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import { prisma } from "../lib/prisma.ts";
+import type { Request, Response } from "express";
 
 //======================== CREATE USER ========================//
 // @desc Register new user
 // @route POST /api/users/
 // @access PUBLIC
 
-const createUser = asyncHandler(async (req, res) => {
+const createUser = asyncHandler(async (req: Request, res: Response) => {
   const { username, email, password } = req.body;
 
   if (!username || !email || !password) {
@@ -54,7 +55,7 @@ const createUser = asyncHandler(async (req, res) => {
 // @route POST /api/users/login
 // @access PUBLIC
 
-const loginUser = asyncHandler(async (req, res) => {
+const loginUser = asyncHandler(async (req: Request, res: Response) => {
   const { username, password } = req.body;
 
   const user = await prisma.user.findUnique({ where: { username } });
@@ -71,7 +72,6 @@ const loginUser = asyncHandler(async (req, res) => {
     token: generateToken(user.id),
   });
 });
-
 
 const generateToken = (id: number) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
