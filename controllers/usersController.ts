@@ -3,7 +3,11 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import { prisma } from "../lib/prisma.ts";
 
-// REGISTER USER
+//======================== CREATE USER ========================//
+// @desc Register new user
+// @route POST /api/users/
+// @access PUBLIC
+
 const createUser = asyncHandler(async (req, res) => {
   const { username, email, password } = req.body;
 
@@ -45,11 +49,34 @@ const createUser = asyncHandler(async (req, res) => {
   });
 });
 
-// Generate JWT
+//======================== LOGIN USER ========================//
+// @desc Register new user
+// @route POST /api/users/login
+// @access PUBLIC
+
+const loginUser = asyncHandler(async (req, res) => {
+  const { username, password } = req.body;
+
+  const user = await prisma.user.findUnique({ where: { username } });
+
+  if (!user || !(await bcrypt.compare(password, user.password))) {
+    res.status(400);
+    throw new Error("Invalid credentials");
+  }
+
+  res.status(200).json({
+    id: user.id,
+    username,
+    email: user.email,
+    token: generateToken(user.id),
+  });
+});
+
+
 const generateToken = (id: number) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: "30d",
   });
 };
 
-export { createUser };
+export { createUser, loginUser };
