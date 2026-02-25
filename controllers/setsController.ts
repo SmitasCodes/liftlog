@@ -16,7 +16,7 @@ const createSet = asyncHandler(async (req: Request, res: Response) => {
   });
 
   res
-    .status(200)
+    .status(201)
     .json({ id: set.id, reps, setNumber, weight, exerciseId, sessionId });
 });
 

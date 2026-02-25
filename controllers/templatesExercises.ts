@@ -20,7 +20,7 @@ const createTemplateExercise = asyncHandler(
       },
     });
 
-    res.status(200).json({
+    res.status(201).json({
       id: templateExercise.id,
       sets,
       order,

@@ -14,7 +14,7 @@ const createSession = asyncHandler(async (req: Request, res: Response) => {
   const session = await prisma.session.create({ data: { templateId, userId } });
 
   res
-    .status(200)
+    .status(201)
     .json({ id: session.id, templateId, userId, createdAt: session.createdAt });
 });
 

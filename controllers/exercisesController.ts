@@ -13,7 +13,7 @@ const createExercise = asyncHandler(async (req: Request, res: Response) => {
 
   const exercise = await prisma.exercise.create({ data: { name, userId } });
 
-  res.status(200).json({
+  res.status(201).json({
     id: exercise.id,
     name,
     userId,
