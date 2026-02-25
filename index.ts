@@ -7,6 +7,7 @@ import usersRoutes from "./routes/usersRoutes.ts";
 import templatesRoutes from "./routes/templatesRoutes.ts";
 import exercisesRoutes from "./routes/exercisesRoutes.ts";
 import templatesExercisesRoutes from "./routes/templatesExercisesRoutes.ts";
+import sessionsRoutes from "./routes/sessionsRoutes.ts";
 
 const port = process.env.PORT || 5000;
 const app = express();
@@ -17,6 +18,7 @@ app.use("/api/users", usersRoutes);
 app.use("/api/templates", templatesRoutes);
 app.use("/api/exercises", exercisesRoutes);
 app.use("/api/templatesExercises", templatesExercisesRoutes);
+app.use("/api/sessions", sessionsRoutes);
 
 app.use(errorHandler);
 
