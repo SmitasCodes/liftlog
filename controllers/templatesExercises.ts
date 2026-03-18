@@ -2,9 +2,18 @@ import type { Request, Response } from "express";
 import asyncHandler from "express-async-handler";
 import { prisma } from "../lib/prisma.ts";
 
+//======================== CREATE TEMPLATE AND EXERCISE ========================//
+// @desc Create template and exercise join
+// @route POST /api/templates/:templateId/exercises/:exerciseId
+// @access PRIVATE
+
 const createTemplateExercise = asyncHandler(
   async (req: Request, res: Response) => {
-    const { exerciseId, templateId, sets, order } = req.body;
+    const templateId = Number(req.params.templateId);
+    const exerciseId = Number(req.params.exerciseId);
+    console.log(req.params);
+    console.log(exerciseId);
+    const { sets, order } = req.body;
 
     if (!exerciseId || !templateId || !sets || !order) {
       res.status(400);

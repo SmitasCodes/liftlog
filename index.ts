@@ -17,9 +17,8 @@ app.use(express.json());
 app.use("/api/users", usersRoutes);
 app.use("/api/templates", templatesRoutes);
 app.use("/api/exercises", exercisesRoutes);
-app.use("/api/templatesExercises", templatesExercisesRoutes);
+app.use("/api/templates", templatesExercisesRoutes);
 app.use("/api/sessions", sessionsRoutes);
-
 app.use(errorHandler);
 
 app.listen(port, () => {

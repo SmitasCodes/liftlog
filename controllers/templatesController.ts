@@ -27,7 +27,20 @@ const createTemplate = asyncHandler(async (req: Request, res: Response) => {
 
 const getTemplates = asyncHandler(async (req: Request, res: Response) => {
   const userId = req.user.id;
-  const templates = await prisma.template.findMany({ where: { userId } });
+  const templates = await prisma.template.findMany({
+    where: { userId },
+    omit: { userId: true },
+    include: {
+      templateExercises: {
+        select: {
+          id: true,
+          order: true,
+          sets: true,
+          exercise: { select: { id: true, name: true } },
+        },
+      },
+    },
+  });
 
   res.status(200).json({ templates });
 });

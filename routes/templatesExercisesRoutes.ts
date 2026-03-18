@@ -4,6 +4,6 @@ import { createTemplateExercise } from "../controllers/templatesExercises.ts";
 
 const router = Router();
 
-router.post("/", protect, createTemplateExercise);
+router.post("/:templateId/exercises/:exerciseId", protect, createTemplateExercise);
 
 export default router;

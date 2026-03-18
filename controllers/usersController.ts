@@ -45,8 +45,6 @@ const createUser = asyncHandler(async (req: Request, res: Response) => {
     username,
     email,
     token: generateToken(user.id),
-    created_at: user.createdAt,
-    updated_at: user.updatedAt,
   });
 });
 
